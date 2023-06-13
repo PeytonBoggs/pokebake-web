@@ -1,9 +1,13 @@
+import AppHeader from './Title';
+import Menu from './Menu';
+
 function App() {
   return (
-      <div>
-        <h1>PokeBake</h1>
-      </div>
-  );
+      <>
+        <AppHeader />
+        <Menu />
+      </>
+  )
 }
 
 export default App;
