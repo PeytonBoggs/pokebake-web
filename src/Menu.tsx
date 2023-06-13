@@ -1,10 +1,15 @@
 import React, {useEffect, useState} from 'react';
 
-interface Pokemon {
+export interface Pokemon {
   name: string;
+  id: number;
 }
 
-export default function Menu() {
+interface menuProps {
+  addPokemonToCart: (name: string)=>void;
+}
+
+export default function Menu({addPokemonToCart}:menuProps) {
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
   
   useEffect(() => {
@@ -15,7 +20,13 @@ export default function Menu() {
     fetch("https://pokeapi.co/api/v2/pokemon/")
       .then(response => response.json())
       .then(data => {
-        const firstTenPokemon = data.results.slice(0, 10);
+        let firstTenPokemon: Array<Pokemon> = [];
+        for (let i = 0; i < 10; i++) {
+          let splitUrl: Array<string> = data.results[i].url.split("/");
+          let tempId: number = +splitUrl[6];
+          let tempPoke: Pokemon = {name: data.results[i].name, id: tempId};
+          firstTenPokemon.push(tempPoke);
+        }
         setPokemon(firstTenPokemon);
       });
   };
@@ -24,11 +35,11 @@ export default function Menu() {
     <div>
         {pokemon.map(poke => (
           <>
-          <button>{poke.name}</button>
+          <button onClick={() => addPokemonToCart(poke.name)}>{poke.name}</button>
           <br></br>
           <br></br>
           </>
         ))}
     </div>
-  )
+  );
 }
