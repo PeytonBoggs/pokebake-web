@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import AppHeader from './Title';
-import Menu, { Pokemon } from './Menu';
+import Menu from './Menu';
+import { Pokemon } from './Pokemon-Interface';
 
 function App() {
   const [cart, setCart] = useState<Pokemon[]>([]);
 
-  function addPokemonToCart(name: string,  id: number) {
-    if (cart.length >= 6) {
+  function handleAdd(poke: Pokemon) {
+    if (cart.length >= 6 || cart.includes(poke)) {
       return;
     }
+
     let tempCart: Pokemon[] = [...cart];
-    tempCart.push({name, id});
+
+    tempCart.push(poke);
     setCart(tempCart);
   }
 
@@ -24,17 +27,28 @@ function App() {
       <>
         <AppHeader />
         <h2>Menu:</h2>
-        <Menu addPokemonToCart={addPokemonToCart}/>
-        <h2>Cart:</h2>
-        {cart.map(poke =>
-        <> 
-          <ul>
-            <li>{poke.name}</li>
-            <button onClick={() => handleRemove(poke)}>remove</button>
-          </ul>
-        </>
-        )}
+        <Menu handleAdd={handleAdd}/>
+        <Cart cart={cart} handleRemove={handleRemove}/>
       </>
+  )
+}
+
+interface CartProps {
+  cart: Pokemon[];
+  handleRemove: (poke: Pokemon)=>void;
+}
+
+function Cart({cart, handleRemove}: CartProps) {
+  return (
+    <>
+     <h2>Cart:</h2>
+     {cart.map(poke =>
+        <ul key={poke.id}>
+           <li>{poke.name}</li>
+           <button onClick={() => handleRemove(poke)}>remove</button>
+        </ul>
+      )}
+    </>
   )
 }
 
