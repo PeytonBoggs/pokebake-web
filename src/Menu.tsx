@@ -6,11 +6,11 @@ export interface Pokemon {
 }
 
 interface menuProps {
-  addPokemonToCart: (name: string)=>void;
+  addPokemonToCart: (name: string, id:number)=>void;
 }
 
 export default function Menu({addPokemonToCart}:menuProps) {
-  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+  const [pokemonList, setPokemon] = useState<Pokemon[]>([]);
   
   useEffect(() => {
     fetchData();
@@ -33,9 +33,9 @@ export default function Menu({addPokemonToCart}:menuProps) {
 
   return (
     <div>
-        {pokemon.map(poke => (
+        {pokemonList.map(poke => (
           <>
-          <button onClick={() => addPokemonToCart(poke.name)}>{poke.name}</button>
+          <button onClick={() => addPokemonToCart(poke.name, poke.id)}>{poke.name}</button>
           <br></br>
           <br></br>
           </>
