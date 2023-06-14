@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pokemon } from './Pokemon-Interface';
 
-interface menuProps {
-  addPokemonToCart: (name: string, id:number)=>void;
+interface MenuProps {
+  handleAdd: (Pokemon: Pokemon)=>void;
 }
 
-export default function Menu({addPokemonToCart}:menuProps) {
+export default function Menu({handleAdd}:MenuProps) {
   const [pokemonList, setPokemon] = useState<Pokemon[]>([]);
   
   useEffect(() => {
@@ -30,11 +30,11 @@ export default function Menu({addPokemonToCart}:menuProps) {
   return (
     <div>
         {pokemonList.map(poke => (
-          <>
-          <button className="addButton" onClick={() => addPokemonToCart(poke.name, poke.id)}>{poke.name}</button>
+          <div key={poke.id}>
+          <button onClick={() => handleAdd(poke)}>{poke.name}</button>
           <br></br>
           <br></br>
-          </>
+          </div>
         ))}
     </div>
   );
