@@ -25,12 +25,13 @@ function App() {
   }
 
   return (
-      <>
+      <div className='App'>
         <AppHeader />
-        <h2>Menu:</h2>
-        <Menu handleAdd={handleAdd}/>
-        <Cart cart={cart} handleRemove={handleRemove}/>
-      </>
+        <div className="siblings">
+          <Menu handleAdd={handleAdd}/>
+          <Cart cart={cart} handleRemove={handleRemove}/>
+        </div>
+      </div>
   )
 }
 

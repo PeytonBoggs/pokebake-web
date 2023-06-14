@@ -29,10 +29,10 @@ export default function Menu({handleAdd}:MenuProps) {
 
   return (
     <div>
+        <h2 className='heading'>Menu:</h2>
         {pokemonList.map(poke => (
           <div key={poke.id}>
-          <button onClick={() => handleAdd(poke)}>{poke.name}</button>
-          <br></br>
+          <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name}</button>
           <br></br>
           </div>
         ))}
