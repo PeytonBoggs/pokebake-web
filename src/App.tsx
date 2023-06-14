@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AppHeader from './Title';
-import Menu, { Pokemon } from './Menu';
+import Menu from './Menu';
+import { Pokemon } from './Pokemon-Interface';
 
 function App() {
   const [cart, setCart] = useState<Pokemon[]>([]);

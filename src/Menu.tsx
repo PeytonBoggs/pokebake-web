@@ -1,9 +1,5 @@
 import React, {useEffect, useState} from 'react';
-
-export interface Pokemon {
-  name: string;
-  id: number;
-}
+import { Pokemon } from './Pokemon-Interface';
 
 interface menuProps {
   addPokemonToCart: (name: string, id:number)=>void;
@@ -36,6 +32,7 @@ export default function Menu({addPokemonToCart}:menuProps) {
         {pokemonList.map(poke => (
           <>
           <button className="addButton" onClick={() => addPokemonToCart(poke.name, poke.id)}>{poke.name}</button>
+          <br></br>
           <br></br>
           </>
         ))}
