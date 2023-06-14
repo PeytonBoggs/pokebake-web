@@ -6,7 +6,7 @@ function App() {
   const [cart, setCart] = useState<Pokemon[]>([]);
 
   function addPokemonToCart(name: string,  id: number) {
-    if (cart.length >= 5) {
+    if (cart.length >= 6) {
       return;
     }
     let tempCart: Pokemon[] = [...cart];
