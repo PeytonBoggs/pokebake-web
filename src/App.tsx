@@ -30,7 +30,7 @@ function App() {
         <> 
           <ul>
             <li>{poke.name}</li>
-            <button onClick={() => handleRemove(poke)}>remove</button>
+            <button className="removeButton" onClick={() => handleRemove(poke)}>remove</button>
           </ul>
         </>
         )}

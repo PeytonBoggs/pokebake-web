@@ -35,8 +35,7 @@ export default function Menu({addPokemonToCart}:menuProps) {
     <div>
         {pokemonList.map(poke => (
           <>
-          <button onClick={() => addPokemonToCart(poke.name, poke.id)}>{poke.name}</button>
-          <br></br>
+          <button className="addButton" onClick={() => addPokemonToCart(poke.name, poke.id)}>{poke.name}</button>
           <br></br>
           </>
         ))}
