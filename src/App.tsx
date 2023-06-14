@@ -2,6 +2,7 @@ import { useState } from 'react';
 import AppHeader from './Title';
 import Menu from './Menu';
 import Cart from './Cart';
+import Bake from './Bake';
 import { Pokemon } from './Pokemon-Interface';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Menu handleAdd={handleAdd}/>
           <Cart cart={cart} handleRemove={handleRemove}/>
         </div>
+        <Bake ingredients={cart}/>
       </div>
   )
 }

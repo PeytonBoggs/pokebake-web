@@ -73,6 +73,18 @@ h1, h2 {
   margin: 2px 2px;
 }
 
+.bakeButton {
+  background-color: yellow;
+  font-family: Pokemon-solid;
+  border-top: 10px solid red;
+  border-left: 10px solid red;
+  border-bottom: 10px solid black;
+  border-right: 10px solid black;
+  padding: 10px;
+  font-size: 40px;
+  letter-spacing: 4px;
+}
+
 .App {
   display: flex;
   flex-direction: column;
