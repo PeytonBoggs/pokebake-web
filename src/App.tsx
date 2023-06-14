@@ -23,18 +23,22 @@ function App() {
 
   return (
       <>
-        <AppHeader />
-        <h2>Menu:</h2>
-        <Menu addPokemonToCart={addPokemonToCart}/>
-        <h2>Cart:</h2>
-        {cart.map(poke =>
-        <> 
-          <ul>
-            <li>{poke.name}</li>
-            <button className="removeButton" onClick={() => handleRemove(poke)}>remove</button>
-          </ul>
-        </>
-        )}
+        <div className="right-column">
+          <AppHeader />
+          <h2>Menu:</h2>
+          <Menu addPokemonToCart={addPokemonToCart}/>
+        </div>
+        <div className="left-column">
+          <h2>Cart:</h2>
+          {cart.map(poke =>
+          <> 
+            <ul>
+              <li>{poke.name}</li>
+              <button className="removeButton" onClick={() => handleRemove(poke)}>remove</button>
+            </ul>
+           </>
+         )}
+        </div>
       </>
   )
 }

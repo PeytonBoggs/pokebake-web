@@ -13,6 +13,20 @@ body {
   font-family: Pokemon;
 }
 
+.left-column {
+  width: 50%;
+}
+
+.right-column {
+  width: 50%;
+}
+
+@media screen {
+  .left-column, .right-column {
+    width: 100%;
+  }
+}
+
 h1, h2 {
   font-family: Pokemon-solid;
 }
