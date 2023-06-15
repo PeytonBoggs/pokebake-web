@@ -16,15 +16,25 @@ export default function Menu({handleAdd}:MenuProps) {
     fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151")
       .then(response => response.json())
       .then(data => {
-        let tempList: Array<Pokemon> = [];
-        data.results.forEach((result: any) => {
-          let splitUrl: Array<String> = result.url.split("/");
-          let tempId: string = (("00" + splitUrl[6]).substring(+(splitUrl[6].length - 1)));
-          let tempPoke: Pokemon = {name: result.name, id: tempId};
-          tempList.push(tempPoke);
+        const fetchPromises = data.results.map((result: any) => {
+          return fetch(result.url)
+            .then(secondResponse => secondResponse.json());
         })
-        setPokemon(tempList);
-      });
+
+        Promise.all(fetchPromises)
+          .then(secondData => {
+            let tempList: Array<Pokemon> = [];
+            secondData.forEach((secondResult: any) => {
+              let tempName: string = secondResult.name;
+              let tempId: string = (("00" + secondResult.id).slice(-3));
+              let tempTypes: string[] = secondResult.types.map((type: any) => type.type.name)
+              console.log(tempTypes);
+              let tempPoke: Pokemon = {name: tempName, id: tempId, types: tempTypes}
+              tempList.push(tempPoke);
+            })
+            setPokemon(tempList);
+          })
+        });
   };
 
   return (
@@ -32,7 +42,7 @@ export default function Menu({handleAdd}:MenuProps) {
         <h2 className='heading'>Menu:</h2>
         {pokemonList.map(poke => (
           <div key={poke.id}>
-          <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name} - #{poke.id}</button>
+          <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name} - #{poke.id} - type: {poke.types.join(", ")}</button>
           <br></br>
           </div>
         ))}
