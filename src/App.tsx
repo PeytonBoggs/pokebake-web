@@ -2,6 +2,7 @@ import { useState } from 'react';
 import AppHeader from './Title';
 import Menu from './Menu';
 import Cart from './Cart';
+import Bake from './Bake';
 import { Pokemon } from './Pokemon-Interface';
 
 function App() {
@@ -25,12 +26,14 @@ function App() {
   }
 
   return (
-      <>
+      <div className='App'>
         <AppHeader />
-        <h2>Menu:</h2>
-        <Menu handleAdd={handleAdd}/>
-        <Cart cart={cart} handleRemove={handleRemove}/>
-      </>
+        <div className="siblings">
+          <Menu handleAdd={handleAdd}/>
+          <Cart cart={cart} handleRemove={handleRemove}/>
+        </div>
+        <Bake ingredients={cart}/>
+      </div>
   )
 }
 

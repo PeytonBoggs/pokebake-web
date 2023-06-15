@@ -8,14 +8,16 @@ interface CartProps {
   
 export default function Cart({cart, handleRemove}: CartProps) {
     return (
-      <>
-       <h2>Cart:</h2>
+      <div className='cart'>
+       <h2 className="heading">Team:</h2>
        {cart.map(poke =>
-          <ul key={poke.id}>
-             <li>{poke.name}</li>
-             <button onClick={() => handleRemove(poke)}>remove</button>
-          </ul>
+          <div key={poke.id}>
+            <div className='siblings'>
+             <button className="removeButton" onClick={() => handleRemove(poke)}>X</button>
+             <p className='selectedName'>{poke.name}</p>
+            </div>
+          </div>
         )}
-      </>
+      </div>
      )
 }

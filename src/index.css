@@ -1,13 +1,99 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: Pokemon-solid;
+  src: url("./fonts/Pokemon\ Solid.ttf");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: Pokemon-text;
+  src: url("./fonts/PokemonGb-RAeo.ttf");
+}
+
+body {
+  background-color: lightgrey;
+  font-family: Pokemon;
+}
+
+h1, h2 {
+  font-family: Pokemon-solid;
+  letter-spacing: 4px;
+}
+
+.title {
+  background-color: black;
+  color: yellow;
+  border-top: 10px solid red;
+  border-left: 10px solid red;
+  border-bottom: 10px solid white;
+  border-right: 10px solid white;
+  padding: 15px;
+  text-align: center;
+  width: auto;
+  height: auto;
+  margin-bottom: 0px;
+}
+
+.heading {
+  background-color: black;
+  color: yellow;
+  border-top: 10px solid red;
+  border-left: 10px solid red;
+  border-bottom: 10px solid white;
+  border-right: 10px solid white;
+  padding: 10px;
+  width: fit-content;
+}
+
+.addButton {
+  background-color: darkgreen;
+  border: 4px solid black;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-family: Pokemon-text;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.selectedName {
+  font-size: 36px;
+  font-family: Pokemon-text;
+  margin-left: 20px;
+}
+
+.removeButton {
+  background-color: red;
+  border: 4px solid black;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  font-family: Pokemon-text;
+  font-size: 20px;
+  margin: 2px 2px;
+}
+
+.bakeButton {
+  background-color: yellow;
+  font-family: Pokemon-solid;
+  border-top: 10px solid red;
+  border-left: 10px solid red;
+  border-bottom: 10px solid black;
+  border-right: 10px solid black;
+  padding: 10px;
+  font-size: 40px;
+  letter-spacing: 4px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.siblings {
+  display: flex;
+}
+
+.siblings > div{
+  flex: 1;
 }
