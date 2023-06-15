@@ -25,9 +25,14 @@ function App() {
     setCart(tempCart);
   }
 
+  function clearCart() {
+    setCart([]);
+  }
+
   return (
       <div className='App'>
         <AppHeader />
+        <button className="clearButton" onClick={clearCart}>Clear Team</button>
         <div className="siblings">
           <Menu handleAdd={handleAdd}/>
           <Cart cart={cart} handleRemove={handleRemove}/>
