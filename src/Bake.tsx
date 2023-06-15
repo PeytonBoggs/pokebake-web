@@ -6,21 +6,21 @@ interface BakeProps {
 }
 
 export default function Bake({ingredients}:BakeProps) {
-    const [bake, setBake] = useState<string>("");
+    const [bake, setBake] = useState<String>("");
 
+    //printBaked changes the state of bake to a string in the form "first-first-last-last" so that the
+    //first half of all names go in the first half of the string and vice versa
     function printBaked(){
-        let tempBake: string = "";
-
-        for (let i = 0; i < ingredients.length; i++) {
-            tempBake += ingredients[i].name.slice(0, (ingredients[i].name.length / 2));
-            tempBake += "-"
-        }
-        
-        tempBake = tempBake.slice(0, tempBake.length - 1);
+        let tempBake: String = "";
 
         for (let i = ingredients.length - 1; i >= 0; i--) {
-            tempBake += "-"
-            tempBake += ingredients[i].name.slice((ingredients[i].name.length / 2), ingredients[i].name.length);           
+            let frontHalf: String = ingredients[i].name.slice(0, (ingredients[i].name.length / 2));
+            let backHalf: String = ingredients[i].name.slice((ingredients[i].name.length / 2), ingredients[i].name.length);
+            if (tempBake === "") {
+                tempBake = frontHalf + "-" + backHalf;
+            } else {
+                tempBake = frontHalf + "-" + tempBake + "-" + backHalf;
+            }
         }
 
         setBake("Congratulations! You've created " + tempBake + " stew!");
@@ -29,7 +29,7 @@ export default function Bake({ingredients}:BakeProps) {
     return (
         <div>
             <br />
-            <button className="bakeButton" onClick={() => printBaked()}>Bake</button>
+            <button className="bakeButton" onClick={printBaked}>Bake</button>
             <h1>{bake}</h1>
         </div>
     )
