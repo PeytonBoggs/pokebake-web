@@ -28,11 +28,9 @@ function App() {
   return (
       <div className='App'>
         <AppHeader />
-        <div className="siblings">
-          <Menu handleAdd={handleAdd}/>
-          <Cart cart={cart} handleRemove={handleRemove}/>
-        </div>
+        <Cart cart={cart} handleRemove={handleRemove}/>
         <Bake ingredients={cart}/>
+        <Menu handleAdd={handleAdd}/>
       </div>
   )
 }

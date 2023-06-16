@@ -38,12 +38,14 @@ export default function Menu({handleAdd}:MenuProps) {
   };
 
   return (
-    <div>
+    <div className='menu'>
         <h2 className='heading'>Menu:</h2>
         {pokemonList.map(poke => (
-          <div key={poke.id}>
-          <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name} - #{poke.id} - type: {poke.types.join(", ")}</button>
-          <br></br>
+          <div className="pokeInterface" key={poke.id}>
+            <p>#{poke.id}</p>
+            <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name}</button>
+            <p>type: {poke.types.join(", ")}</p>
+            <br></br>
           </div>
         ))}
     </div>
