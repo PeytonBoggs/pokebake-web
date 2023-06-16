@@ -6,7 +6,7 @@ interface MenuProps {
 }
 
 export default function Menu({handleAdd}:MenuProps) {
-  const [pokemonList, setPokemon] = useState<Pokemon[]>([]);
+  const [searchResults, setSearchResults] = useState<Pokemon[]>([]);
   const [input, setInput] = useState<string>("");
   const [fullList, setFullList] = useState<Pokemon[]>([]);
   
@@ -25,7 +25,7 @@ export default function Menu({handleAdd}:MenuProps) {
           let tempPoke: Pokemon = {name: data.results[i].name, id: tempId};
           firstTenPokemon.push(tempPoke);
         }
-        setPokemon(firstTenPokemon);
+        setSearchResults(firstTenPokemon);
         setFullList(firstTenPokemon);
       });
   };
@@ -38,7 +38,7 @@ export default function Menu({handleAdd}:MenuProps) {
       poke.name.includes(tempInput)
     );
     
-    setPokemon(tempList);
+    setSearchResults(tempList);
   }
 
 
@@ -47,7 +47,7 @@ export default function Menu({handleAdd}:MenuProps) {
         <h2 className='heading'>Menu:</h2>
         <label>Search:</label>
         <input type="text" onChange={handleChange} value={input}></input>
-        {pokemonList.map(poke => (
+        {searchResults.map(poke => (
           <div key={poke.id}>
           <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name}</button>
           <br></br>
