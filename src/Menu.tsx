@@ -35,7 +35,8 @@ export default function Menu({handleAdd}:MenuProps) {
               let tempPoke: Pokemon = {name: tempName, id: tempId, types: tempTypes}
               tempList.push(tempPoke);
             })
-            setPokemon(tempList);
+            setSearchResults(tempList);
+            setFullList(tempList);
           })
         });
   };
@@ -58,10 +59,6 @@ export default function Menu({handleAdd}:MenuProps) {
         <label>Search:</label>
         <input type="text" onChange={handleChange} value={input}></input>
         {searchResults.map(poke => (
-          <div key={poke.id}>
-          <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name}</button>
-          <br></br>
-        {pokemonList.map(poke => (
           <div className="pokeInterface" key={poke.id}>
             <p>#{poke.id}</p>
             <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name}</button>
