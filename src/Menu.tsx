@@ -30,9 +30,9 @@ export default function Menu({handleAdd}:MenuProps) {
             secondData.forEach((secondResult: any) => {
               let tempName: string = secondResult.name;
               let tempId: string = (("00" + secondResult.id).slice(-3));
-              let tempTypes: string[] = secondResult.types.map((type: any) => type.type.name)
-              console.log(tempTypes);
-              let tempPoke: Pokemon = {name: tempName, id: tempId, types: tempTypes}
+              let tempTypes: string[] = secondResult.types.map((type: any) => type.type.name);
+              let tempSprite: string = secondResult.sprites.front_default;
+              let tempPoke: Pokemon = {name: tempName, id: tempId, types: tempTypes, sprite: tempSprite};
               tempList.push(tempPoke);
             })
             setSearchResults(tempList);
@@ -52,19 +52,24 @@ export default function Menu({handleAdd}:MenuProps) {
     setSearchResults(tempList);
   }
 
-
   return (
     <div className='menu'>
-        <h2 className='heading'>Menu:</h2>
-        <label>Search:</label>
-        <input type="text" onChange={handleChange} value={input}></input>
+      <div className='menuTitleBar'>
+        <h2 className='menuTitle'>Menu</h2>
+        <label className='search'>Search:</label>
+        <input className='searchBar' type="text" onChange={handleChange} value={input}></input>
+      </div>
         {searchResults.map(poke => (
           <div className="pokeInterface" key={poke.id}>
-            <p>#{poke.id}</p>
+            <div className='lineOne'>
+              <p className='number'>#{poke.id}</p>
+              <img className="ball" src={poke.sprite} alt={poke.name}></img>
+            </div>
+            <p className='types'>type: {poke.types.join(", ")}</p>
             <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name}</button>
-            <p>type: {poke.types.join(", ")}</p>
             <br></br>
           </div>
+
         ))}
     </div>
   );
