@@ -43,6 +43,23 @@ h1, h2 {
   width: fit-content;
 }
 
+.clearButton {
+  background-color: yellow;
+  font-family: Pokemon-solid;
+  border-top: 10px solid red;
+  border-left: 10px solid red;
+  border-bottom: 10px solid black;
+  border-right: 10px solid black;
+  font-size: 30px;
+  letter-spacing: 4px;
+  margin-top: 20px;
+  
+.pokeInterface {
+  border: 2px solid red;
+  flex-direction: row;
+  flex: 1;
+}
+
 .addButton {
   background-color: darkgreen;
   border: 4px solid black;
@@ -56,10 +73,14 @@ h1, h2 {
   cursor: pointer;
 }
 
-.selectedName {
-  font-size: 36px;
-  font-family: Pokemon-text;
-  margin-left: 20px;
+.cart {
+  border: 2px solid yellow;
+}
+
+.siblings {
+  border: 2px solid green;
+  display: flex;
+  align-items: center;
 }
 
 .removeButton {
@@ -71,6 +92,13 @@ h1, h2 {
   font-family: Pokemon-text;
   font-size: 20px;
   margin: 2px 2px;
+}
+
+.selectedName {
+  font-size: 36px;
+  font-family: Pokemon-text;
+  margin-left: 10px;
+  white-space: nowrap;
 }
 
 .bakeButton {
@@ -90,10 +118,7 @@ h1, h2 {
   flex-direction: column;
 }
 
-.siblings {
-  display: flex;
-}
-
-.siblings > div{
-  flex: 1;
+.menu {
+  border: 2px solid blue;
+  flex: 2
 }

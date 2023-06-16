@@ -15,19 +15,29 @@ export default function Menu({handleAdd}:MenuProps) {
   }, []);
 
   const fetchData = () => {
-    fetch("https://pokeapi.co/api/v2/pokemon/")
+    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151")
       .then(response => response.json())
       .then(data => {
-        let firstTenPokemon: Array<Pokemon> = [];
-        for (let i = 0; i < 10; i++) {
-          let splitUrl: Array<string> = data.results[i].url.split("/");
-          let tempId: number = +splitUrl[6];
-          let tempPoke: Pokemon = {name: data.results[i].name, id: tempId};
-          firstTenPokemon.push(tempPoke);
-        }
-        setSearchResults(firstTenPokemon);
-        setFullList(firstTenPokemon);
-      });
+
+        const fetchPromises = data.results.map((result: any) => {
+          return fetch(result.url)
+            .then(secondResponse => secondResponse.json());
+        })
+
+        Promise.all(fetchPromises)
+          .then(secondData => {
+            let tempList: Array<Pokemon> = [];
+            secondData.forEach((secondResult: any) => {
+              let tempName: string = secondResult.name;
+              let tempId: string = (("00" + secondResult.id).slice(-3));
+              let tempTypes: string[] = secondResult.types.map((type: any) => type.type.name)
+              console.log(tempTypes);
+              let tempPoke: Pokemon = {name: tempName, id: tempId, types: tempTypes}
+              tempList.push(tempPoke);
+            })
+            setPokemon(tempList);
+          })
+        });
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +53,7 @@ export default function Menu({handleAdd}:MenuProps) {
 
 
   return (
-    <div>
+    <div className='menu'>
         <h2 className='heading'>Menu:</h2>
         <label>Search:</label>
         <input type="text" onChange={handleChange} value={input}></input>
@@ -51,6 +61,12 @@ export default function Menu({handleAdd}:MenuProps) {
           <div key={poke.id}>
           <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name}</button>
           <br></br>
+        {pokemonList.map(poke => (
+          <div className="pokeInterface" key={poke.id}>
+            <p>#{poke.id}</p>
+            <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name}</button>
+            <p>type: {poke.types.join(", ")}</p>
+            <br></br>
           </div>
         ))}
     </div>
