@@ -32,7 +32,7 @@ export default function Menu({handleAdd}:MenuProps) {
               let tempId: string = (("00" + secondResult.id).slice(-3));
               let tempTypes: string[] = secondResult.types.map((type: any) => type.type.name);
               let tempSprite: string = secondResult.sprites.front_default;
-              let tempPoke: Pokemon = {name: tempName, id: tempId, types: tempTypes, sprite: tempSprite};
+              let tempPoke: Pokemon = {name: tempName, id: tempId, types: tempTypes, sprite: tempSprite, clicked: false};
               tempList.push(tempPoke);
             })
             setSearchResults(tempList);
@@ -52,6 +52,14 @@ export default function Menu({handleAdd}:MenuProps) {
     setSearchResults(tempList);
   }
 
+  function getInterface(poke: Pokemon) {
+    if (poke.clicked) {
+      return 'pokeInterfaceClicked';
+    } else {
+      return 'pokeInterface';
+    }
+  }
+
   return (
     <div className='menu'>
       <div className='menuTitleBar'>
@@ -61,7 +69,7 @@ export default function Menu({handleAdd}:MenuProps) {
       </div>
       <div className='menu'>
        {searchResults.map(poke => (
-           <div className="pokeInterface" onClick={() => handleAdd(poke)} key={poke.id}>
+           <div className={getInterface(poke)} onClick={() => handleAdd(poke)} key={poke.id}>
             <div className='lineOne'>
               <p className='number'>#{poke.id}</p>
               <img className="ball" src={poke.sprite} alt={poke.name}></img>

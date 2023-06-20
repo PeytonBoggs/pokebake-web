@@ -12,7 +12,7 @@ export default function Cart({cart, handleRemove}: CartProps) {
       <h2 className="heading">Team:</h2>
       <div className='menu'>
         {cart.map(poke =>
-        <div className="pokeInterface" onClick={() => handleRemove(poke)} key={poke.id}>
+        <div className='pokeInterface' onClick={() => handleRemove(poke)} key={poke.id}>
           <div className='lineOne'>
             <p className='number'>#{poke.id}</p>
             <img className="ball" src={poke.sprite} alt={poke.name}></img>

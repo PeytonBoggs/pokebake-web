@@ -17,15 +17,23 @@ function App() {
 
     tempCart.push(poke);
     setCart(tempCart);
+
+    poke.clicked = true;
   }
 
   function handleRemove(poke: Pokemon) {
     let tempCart: Pokemon[] = [...cart]; 
     tempCart.splice(tempCart.indexOf(poke), 1);
     setCart(tempCart);
+
+    poke.clicked = false;
   }
 
   function clearCart() {
+    cart.forEach(poke => {
+      poke.clicked = false
+    });
+
     setCart([]);
   }
 

@@ -56,7 +56,6 @@ h1, h2 {
 }
 
 .menu {
-  border: 2px solid yellow;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -99,8 +98,22 @@ h1, h2 {
   border: 5px solid black;
   border-radius: 10%;
   background-color: lightslategray;
-  width: 30%;
-  height: 300px;
+  width: 31%;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-content: stretch;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+.pokeInterfaceClicked {
+  border: 5px solid white;
+  border-radius: 10%;
+  background-color: rgb(157, 177, 197);
+  width: 31%;
+  height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: left;
