@@ -59,18 +59,19 @@ export default function Menu({handleAdd}:MenuProps) {
         <label className='search'>Search:</label>
         <input className='searchBar' type="text" onChange={handleChange} value={input}></input>
       </div>
-        {searchResults.map(poke => (
-          <div className="pokeInterface" key={poke.id}>
+      <div className='menu'>
+       {searchResults.map(poke => (
+           <div className="pokeInterface" onClick={() => handleAdd(poke)} key={poke.id}>
             <div className='lineOne'>
               <p className='number'>#{poke.id}</p>
               <img className="ball" src={poke.sprite} alt={poke.name}></img>
             </div>
             <p className='types'>type: {poke.types.join(", ")}</p>
-            <button className="addButton" onClick={() => handleAdd(poke)}>{poke.name}</button>
+            <p className="addButton">{poke.name}</p>
             <br></br>
-          </div>
-
-        ))}
+           </div>
+       ))}
+      </div>
     </div>
   );
 }
