@@ -9,7 +9,12 @@ function App() {
   const [cart, setCart] = useState<Pokemon[]>([]);
 
   function handleAdd(poke: Pokemon) {
-    if (cart.length >= 6 || cart.includes(poke)) {
+    if (cart.includes(poke)) {
+      handleRemove(poke)
+      return;
+    }
+    
+    if (cart.length >= 6) {
       return;
     }
 
@@ -40,10 +45,10 @@ function App() {
   return (
       <div className='App'>
         <AppHeader />
+        <Menu handleAdd={handleAdd}/>
         <button className="clearButton" onClick={clearCart}>Clear Team</button>
         <Cart cart={cart} handleRemove={handleRemove}/>
         <Bake ingredients={cart}/>
-        <Menu handleAdd={handleAdd}/>
       </div>
   )
 }

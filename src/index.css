@@ -25,11 +25,11 @@ h1, h2 {
   border-left: 10px solid red;
   border-bottom: 10px solid white;
   border-right: 10px solid white;
-  padding: 15px;
+  padding: 5px;
   text-align: center;
   width: auto;
   height: auto;
-  margin-bottom: 0px;
+  margin: 0px;
 }
 
 .heading {
@@ -43,25 +43,15 @@ h1, h2 {
   width: fit-content;
 }
 
-.clearButton {
-  background-color: yellow;
-  font-family: Pokemon-solid;
-  border-top: 10px solid red;
-  border-left: 10px solid red;
-  border-bottom: 10px solid black;
-  border-right: 10px solid black;
-  font-size: 30px;
-  letter-spacing: 4px;
-  margin-top: 20px;
-}
-
 .menu {
+  height: 675px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
   justify-content: center;
   gap: 15px;
+  overflow-y: auto;
 }
 
 .menuTitleBar {
@@ -69,7 +59,7 @@ h1, h2 {
   height: 100px;
   display: flex;
   align-items: center;
-  border-top: 5px dashed black;
+  border-bottom: 5px dashed black;
   justify-content: space-between;
 }
 
@@ -185,6 +175,18 @@ h1, h2 {
   font-family: Pokemon-text;
   font-size: 20px;
   margin: 4px 10px;
+}
+
+.clearButton {
+  background-color: yellow;
+  font-family: Pokemon-solid;
+  border-top: 10px solid red;
+  border-left: 10px solid red;
+  border-bottom: 10px solid black;
+  border-right: 10px solid black;
+  font-size: 30px;
+  letter-spacing: 4px;
+  margin-top: 20px;
 }
 
 .bakeButton {
