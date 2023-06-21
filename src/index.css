@@ -74,6 +74,7 @@ h1, h2 {
 
 .genForm {
   font-family: Pokemon-solid;
+  letter-spacing: 4px;
   font-size: 30px;
   margin-right: 30px;
   width: 500px;
@@ -83,16 +84,20 @@ h1, h2 {
 
 .genSelect {
   font-family: Pokemon-solid;
+  letter-spacing: 4px;
   margin: 0px;
 }
 
 .search {
   font-family: Pokemon-solid;
+  letter-spacing: 4px;
   font-size: 30px;
   flex-grow: 1;
 }
 
 .searchBar {
+  font-family: Pokemon-solid;
+  letter-spacing: 4px;
   background-color: white;
   width: 60%;
   height: 40px;

@@ -21,7 +21,7 @@ export default function Menu({handleAdd}:MenuProps) {
 
   useEffect(() => {
     switch (generation) {
-      case "1":
+      default:
         setOffset("0");
         setLimit("151");
         break;
