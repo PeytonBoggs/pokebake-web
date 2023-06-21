@@ -9,13 +9,27 @@ export default function Menu({handleAdd}:MenuProps) {
   const [searchResults, setSearchResults] = useState<Pokemon[]>([]);
   const [input, setInput] = useState<string>("");
   const [fullList, setFullList] = useState<Pokemon[]>([]);
-  
-  useEffect(() => {
-    fetchData();
-  }, []);
 
-  const fetchData = () => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151")
+  const [generation, setGeneration] = useState<string>("1")
+  const [offset, setOffset] = useState<string>("0");
+  const [limit, setLimit] = useState<string>("151");
+  
+  const handleGenChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    let newGen = e.target.value;
+    setGeneration(newGen);
+  }
+
+  useEffect(() => {
+    if (generation === "1") {setOffset("0"); setLimit("151");}
+    if (generation === "2") {setOffset("151"); setLimit("100"); console.log("touch");}
+    if (generation === "3") {setOffset("251"); setLimit("135");}
+    if (generation === "4") {setOffset("386"); setLimit("108");}
+    if (generation === "5") {setOffset("494"); setLimit("155");}
+    if (generation === "6") {setOffset("649"); setLimit("72");}
+    if (generation === "7") {setOffset("721"); setLimit("88");}
+    if (generation === "8") {setOffset("809"); setLimit("96");}
+    if (generation === "9") {setOffset("905"); setLimit("105");}
+    fetch("https://pokeapi.co/api/v2/pokemon/?offset=" + offset + "&limit=" + limit)
       .then(response => response.json())
       .then(data => {
 
@@ -29,7 +43,7 @@ export default function Menu({handleAdd}:MenuProps) {
             let tempList: Array<Pokemon> = [];
             secondData.forEach((secondResult: any) => {
               let tempName: string = secondResult.name;
-              let tempId: string = (("00" + secondResult.id).slice(-3));
+              let tempId: string = (("000" + secondResult.id).slice(-4));
               let tempTypes: string[] = secondResult.types.map((type: any) => type.type.name);
               let tempSprite: string = secondResult.sprites.front_default;
               let tempPoke: Pokemon = {name: tempName, id: tempId, types: tempTypes, sprite: tempSprite, clicked: false};
@@ -39,9 +53,9 @@ export default function Menu({handleAdd}:MenuProps) {
             setFullList(tempList);
           })
         });
-  };
+  }, [generation, limit, offset]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     let tempInput = e.target.value;
     setInput(tempInput);
 
@@ -61,11 +75,25 @@ export default function Menu({handleAdd}:MenuProps) {
   }
 
   return (
-    <div className='menu'>
+    <div>
       <div className='menuTitleBar'>
         <h2 className='menuTitle'>Menu</h2>
+        <form className='genForm'>
+          Generation:
+          <select className="genSelect" onChange={handleGenChange}>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+            <option value={6}>6</option>
+            <option value={7}>7</option>
+            <option value={8}>8</option>
+            <option value={9}>9</option>
+          </select>
+        </form>
         <label className='search'>Search:</label>
-        <input className='searchBar' type="text" onChange={handleChange} value={input}></input>
+        <input className='searchBar' type="text" onChange={handleSearchChange} value={input}></input>
       </div>
       <div className='menu'>
        {searchResults.map(poke => (

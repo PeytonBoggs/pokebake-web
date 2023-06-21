@@ -60,6 +60,7 @@ h1, h2 {
   display: flex;
   align-items: center;
   border-bottom: 5px dashed black;
+  margin-bottom: 20px;
   justify-content: space-between;
 }
 
@@ -71,10 +72,24 @@ h1, h2 {
   height: fit-content;
 }
 
+.genForm {
+  font-family: Pokemon-solid;
+  font-size: 30px;
+  margin-right: 30px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.genSelect {
+  font-family: Pokemon-solid;
+  margin: 0px;
+}
+
 .search {
   font-family: Pokemon-solid;
   font-size: 30px;
-  width: fit-content;
+  flex-grow: 1;
 }
 
 .searchBar {
