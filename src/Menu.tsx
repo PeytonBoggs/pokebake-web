@@ -20,15 +20,45 @@ export default function Menu({handleAdd}:MenuProps) {
   }
 
   useEffect(() => {
-    if (generation === "1") {setOffset("0"); setLimit("151");}
-    if (generation === "2") {setOffset("151"); setLimit("100"); console.log("touch");}
-    if (generation === "3") {setOffset("251"); setLimit("135");}
-    if (generation === "4") {setOffset("386"); setLimit("108");}
-    if (generation === "5") {setOffset("494"); setLimit("155");}
-    if (generation === "6") {setOffset("649"); setLimit("72");}
-    if (generation === "7") {setOffset("721"); setLimit("88");}
-    if (generation === "8") {setOffset("809"); setLimit("96");}
-    if (generation === "9") {setOffset("905"); setLimit("105");}
+    switch (generation) {
+      case "1":
+        setOffset("0");
+        setLimit("151");
+        break;
+      case "2":
+        setOffset("151");
+        setLimit("100");
+        break;
+      case "3":
+        setOffset("251");
+        setLimit("135");
+        break;
+      case "4":
+        setOffset("386");
+        setLimit("108");
+        break;
+      case "5":
+        setOffset("494");
+        setLimit("155");
+        break;
+      case "6":
+        setOffset("649");
+        setLimit("72");
+        break;
+      case "7":
+        setOffset("721");
+        setLimit("88");
+        break;
+      case "8":
+        setOffset("809");
+        setLimit("96");
+        break;
+      case "9":
+        setOffset("905");
+        setLimit("105");
+        break;
+    }
+
     fetch("https://pokeapi.co/api/v2/pokemon/?offset=" + offset + "&limit=" + limit)
       .then(response => response.json())
       .then(data => {
